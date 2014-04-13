@@ -1,17 +1,23 @@
 package com.nishant.posgrestable;
 
+import org.osmdroid.api.IMapController;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
+
 
 public class MainActivity extends Activity implements OnClickListener{
 
-	private Button id1,id2;
-	private TextView idView, nameView;
+	private Button id1;
+	private	MapView map;
+	private IMapController mc;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,39 +25,37 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		
 		id1 = (Button) findViewById(R.id.id1);
-		id2 = (Button) findViewById(R.id.id2);
-		idView = (TextView)	 findViewById(R.id.pid);
-		nameView = (TextView) findViewById(R.id.textView1);
 
+		setTitle("CleanCity - Team Up to Clean Up");
+		//initialize and link map object
+		map = (MapView) findViewById(R.id.map);
+		
+		//setting tile source
+		map.setTileSource(TileSourceFactory.MAPQUESTOSM);
+		
+		//enable zoom controls and touch controls
+		map.setBuiltInZoomControls(true);
+		map.setMultiTouchControls(true);
+		
+		//setting a map controller
+		mc = map.getController();
+		
+		//create a point with argument (latitude,longitude)
+		GeoPoint point = new GeoPoint(27.74280,85.33170);//27.6190,85.5389//27.74280,85.33170
+		
+		//set center and zoom level
+		mc.setZoom(20);
+		mc.setCenter(point);
+		
 		//add click listeners
 		id1.setOnClickListener(this);
-		id2.setOnClickListener(this);
 	
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
-		String i = "";
-		switch(arg0.getId()){
-		case(R.id.id1):
-			i="home";
-			break;
-		case(R.id.id2):
-			i="office";
-			break;
-		};
-		Requestor requestor = new Requestor(i);
-		requestor.setIdView(idView);
-		requestor.setNameView(nameView);
-		requestor.execute("null");
+		Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
+		startActivity(intent);
 	}
-
 }

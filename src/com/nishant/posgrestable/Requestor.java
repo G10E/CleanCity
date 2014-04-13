@@ -3,48 +3,48 @@ package com.nishant.posgrestable;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.TextView;
 
-public class Requestor extends AsyncTask<String,Void,String>{
+public class Requestor extends AsyncTask<Void,Void,Void>{
 
-	private TextView idView, nameView;
-	private String id_req;
+	private String reportType;
+	private String comment;
+	private String latitude;
+	private String longitude;
 	private String localhost = "http://10.0.2.2";
-	private String port = "8000";
+	private String port = "80";
 	public Requestor(){}
-	public Requestor(String i) {
-		// TODO Auto-generated constructor stub
-		id_req = i;
-	}
-
+	
 	@Override
-	protected String doInBackground(String... arg0) {
+	protected Void doInBackground(Void... arg0) {
 		// TODO Auto-generated method stubl
 		try {
-			String link = localhost+":"+port;
-			/*String data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(id_req,"UTF-8");
-			URL url = new URL(link);
-			URLConnection conn = url.openConnection();
-			conn.setDoOutput(true);
-			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-			wr.write(data); //to write encoded data for http post requests
-			wr.flush();
-			*/
+			String link = localhost+":"+port+"/ban/cleancity/report.php";
 			HttpClient client = new DefaultHttpClient();
-			HttpGet httpGet = new HttpGet(link);
-			HttpResponse response = client.execute(httpGet);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+	        nameValuePairs.add(new BasicNameValuePair("type", reportType));
+	        nameValuePairs.add(new BasicNameValuePair("comment", comment));
+	        nameValuePairs.add(new BasicNameValuePair("lat", latitude));
+	        nameValuePairs.add(new BasicNameValuePair("long", longitude));
+	        // Execute HTTP Post Request
+			HttpPost httpPost = new HttpPost(link);
+	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = client.execute(httpPost);
 	        HttpEntity entity = response.getEntity();
 	        InputStream is = entity.getContent();
 	        BufferedReader reader = new BufferedReader (new InputStreamReader(is));
@@ -54,38 +54,42 @@ public class Requestor extends AsyncTask<String,Void,String>{
 				sb.append(line);
 			}
 			
-			return sb.toString();			
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Got error";
 		}
+		return null;
 	}
 
 	@Override
-	protected void onPostExecute(String result) {
+	protected void onPostExecute(Void result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		try {
-			JSONArray array = new JSONArray(result);
-			JSONObject json = array.getJSONObject(0);
-			String id = json.getString("text");
-			String name = json.getString("key");
-			this.idView.setText(id);
-			this.nameView.setText(name);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	public void setIdView(TextView idView) {
-		this.idView = idView;
+	public String getReportType() {
+		return reportType;
 	}
-
-	public void setNameView(TextView nameView) {
-		this.nameView = nameView;
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 	
 	
