@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Posgrestable</string>
+    <string name="app_name">CleanCity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="p_id">Point id</string>
     <string name="p_name">Point Name</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
 
 </resources>

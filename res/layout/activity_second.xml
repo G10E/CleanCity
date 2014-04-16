@@ -13,49 +13,27 @@
         android:text="Submit" 
         android:onClick="onClick"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Type" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/but"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="69dp"
-        android:text="Longitude" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="29dp"
-        android:text="Latitude" />
-
     <EditText
         android:id="@+id/lattext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView3"
-        android:ems="10"
-        android:text="27.7019" />
+        android:inputType="numberDecimal"
+	    android:layout_alignTop="@+id/textView3"
+        android:hint="latitude"
+        android:ems="10"/>
+        <!-- android:text="27.7019" /-->
 
     <EditText
         android:id="@+id/longtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView3"
-        android:ems="10"
-        android:text="85.3219" />
+        android:inputType="numberDecimal"
+	    android:layout_below="@+id/textView3"
+	    android:hint="longitude"
+        android:ems="10"/>
+        <!--android:text="85.3219" /-->
 
     <RadioGroup
         android:id="@+id/rg1"
@@ -88,7 +66,7 @@
     <EditText
         android:id="@+id/commenttext"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100sp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView2"
         android:ems="10"
@@ -111,6 +89,62 @@
         android:layout_alignParentLeft="true"
         android:background="@drawable/myloc"
         android:onClick="loc_btn"
+        android:text=" " />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/but"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20sp"
+        android:text="Longitude" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView4"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_marginBottom="15sp"
+        android:text="Latitude" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35sp"
+        android:text="Type" />
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_above="@+id/myloc"
+        android:layout_alignLeft="@+id/but"
+        android:layout_below="@+id/commenttext"
+        android:background="@drawable/trash" />
+
+    <Button
+        android:id="@+id/setting_btn_save"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/commenttext"
+        android:background="@drawable/camera"
+        android:onClick="onCameraClick"
+        android:text=" " />
+
+    <Button
+        android:id="@+id/setting"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/gear"
+        android:onClick="settingClicked"
         android:text=" " />
 
 </RelativeLayout>
