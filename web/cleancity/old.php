@@ -3,7 +3,7 @@
 	<title>
 		CleanCity - Towards Cleaner City!!
 	</title>
-	<script type="text/javascript" src="http://openlayers.org/api/2.12/OpenLayers.js">
+	<script type="text/javascript" src="http://openlayers.org/api/2.13.1/OpenLayers.js">
 	</script>
 	<!--script type="text/javascript" src="./2.13.1/OpenLayers.js">
 	</script-->
@@ -136,6 +136,9 @@
 								return '#0000dd';
 							}
 						}
+					},
+					decodeimg : function(base64string){
+						
 					}
 				}
 			});
@@ -173,7 +176,7 @@
 									popup_text+= "<img src='"+feature.cluster[last].attributes.imgpath+"'/><br>and "+last+" more...";
 							}
 							else{
-									popup_text+=feature.cluster[0].attributes.type+" Cluster</b><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
+									popup_text+=feature.cluster[last].attributes.type+" Cluster</b><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
 									popup_text+= "<img src='"+feature.cluster[last].attributes.imgpath+"'/> <br>and "+last+" more...";
 							}
 						}
@@ -187,7 +190,8 @@
 							OpenLayers.LonLat.fromString(feature.geometry.toShortString()),
 							null,
 							popup_text,
-							null
+							null,
+							true
 						);
 						feature.popup = popup;
 						map.addPopup(popup);
@@ -205,7 +209,7 @@
 			var selector = new OpenLayers.Control.SelectFeature(vector,{
 				click:true,
 				autoActivate:true
-			});
+			}); 
 			
 			map.addLayers([osm, vector]);
 			

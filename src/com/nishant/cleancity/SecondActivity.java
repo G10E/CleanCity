@@ -64,16 +64,17 @@ public class SecondActivity extends Activity implements LocationListener{
             public void onCheckedChanged(RadioGroup rg, int checkedId) {
                 switch(checkedId){
                     case R.id.rb1:
-                    	typet = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
+                    	typet = "Bio Degradable";
                     	
                     break;
 
                     case R.id.rb2:
-                        typet = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
+                        //typet = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
+                        typet = "Non-Bio Degradable";
                     break;
 
                     case R.id.rb3:
-                    	String value3 = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
+                    	typet = "Mixed";
                     break;
                 }
 

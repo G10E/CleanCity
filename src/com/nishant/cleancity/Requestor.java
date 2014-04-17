@@ -63,7 +63,7 @@ public class Requestor extends AsyncTask<Void,Void,Void>{
 			HttpResponse response = client.execute(httpPost);
 	        
 	        //uploadImageFile();
-	        HttpEntity entity = response.getEntity();
+	        /*HttpEntity entity = response.getEntity();
 	        InputStream is = entity.getContent();
 	        BufferedReader reader = new BufferedReader (new InputStreamReader(is));
 			StringBuilder sb = new StringBuilder();
@@ -71,7 +71,7 @@ public class Requestor extends AsyncTask<Void,Void,Void>{
 			while((line=reader.readLine())!=null){
 				sb.append(line);
 			}
-			Log.i("ASdas",sb.toString());
+			Log.i("ASdas",sb.toString());*/
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
