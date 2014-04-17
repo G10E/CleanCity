@@ -3,10 +3,10 @@
 	<title>
 		CleanCity - Towards Cleaner City!!
 	</title>
-	<!--script type="text/javascript" src="http://openlayers.org/api/2.13.1/OpenLayers.js">
-	</script-->
-	<script type="text/javascript" src="./2.13.1/OpenLayers.js">
+	<script type="text/javascript" src="http://openlayers.org/api/2.13.1/OpenLayers.js">
 	</script>
+	<!--script type="text/javascript" src="./2.13.1/OpenLayers.js">
+	</script-->
 	<style>
 		html,head, body{
 			width: 100%;
@@ -172,11 +172,11 @@
 							else mixed_garbage=true;
 							var last =feature.attributes.count-1;
 							if(mixed_garbage){
-									popup_text+="Mixed </b><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
+									popup_text+="Mixed Cluster</b><br><i>Type: "+feature.cluster[last].attributes.type+"</i><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
 									popup_text+= "<img src='"+feature.cluster[last].attributes.imgpath+"'/><br>and "+last+" more...";
 							}
 							else{
-									popup_text+=feature.cluster[0].attributes.type+"</b><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
+									popup_text+=feature.cluster[last].attributes.type+" Cluster</b><br>Comments: " + feature.cluster[last].attributes.comment +"<br>";
 									popup_text+= "<img src='"+feature.cluster[last].attributes.imgpath+"'/> <br>and "+last+" more...";
 							}
 						}
@@ -207,7 +207,7 @@
 			
 			// create the select feature control
 			var selector = new OpenLayers.Control.SelectFeature(vector,{
-				hover:true,
+				click:true,
 				autoActivate:true
 			}); 
 			
